@@ -82,7 +82,6 @@ router.post('/add-page', function (req, res) {
             }
         });
     }
-
 });
 
 // Sort pages function

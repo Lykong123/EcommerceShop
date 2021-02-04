@@ -231,7 +231,6 @@ router.post('/edit-product/:id', function (req, res) {
                     p.save(function (err) {
                         if (err)
                             console.log(err);
-
                         if (imageFile != "") {
                             if (pimage != "") {
                                 fs.remove('public/product_images/' + id + '/' + pimage, function (err) {
@@ -260,7 +259,6 @@ router.post('/edit-product/:id', function (req, res) {
 
 //post product gallery
 router.post('/product-gallery/:id', function (req, res) {
-
     var productImage = req.files.file;
     var id = req.params.id;
     var path = 'public/product_images/' + id + '/gallery/' + req.files.file.name;
@@ -293,7 +291,7 @@ router.get('/delete-image/:image', isAdmin, function (req, res) {
                     console.log(err);
                 } else {
                     req.flash('success', 'Image deleted!');
-                    res.redirect('/admin/products/edit-product/' + req.query.id);
+                    res.redirect('products');
                 }
             });
         }
@@ -303,7 +301,7 @@ router.get('/delete-image/:image', isAdmin, function (req, res) {
 /*
  * GET delete product
  */
-router.get('/delete-product/:id', isAdmin, function (req, res) {
+router.get('/delete-product/:id', function (req, res) {
 
     var id = req.params.id;
     var path = 'public/product_images/' + id;
@@ -317,7 +315,7 @@ router.get('/delete-product/:id', isAdmin, function (req, res) {
             });
             
             req.flash('success', 'Product deleted!');
-            res.redirect('/admin/products');
+            res.redirect('products');
         }
     });
 
