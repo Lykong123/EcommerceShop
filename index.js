@@ -53,10 +53,11 @@ Category.find(function (err, categories) {
 //express fileupload middleware
 app.use(fileUpload());
 
-//parse application json
-app.use(bodyParser.json());
 //set body parser middle ware
 app.use(bodyParser.urlencoded({extended:false}));
+
+//parse application json
+app.use(bodyParser.json()); 
 
 //set session middleware
 app.use(session({
@@ -117,18 +118,27 @@ app.use(passport.session());
 //app.get('*', function(req, res, next){
   //  res.locals.user = req.user || null;
 //})
+app.get('*', function(req, res, next){
+    res.locals.cart = req.session.cart;
+    res.locals.user= req.user || null;
+    next();
+});
 
 //set routes
 var pages = require('./routes/pages.js');
+var products = require('./routes/products.js')
 var adminPages = require('./routes/admin_pages.js');
 var adminCategories = require('./routes/admin_categories.js');
 var adminProducts = require('./routes/admin_products.js');
 var users = require('./routes/users.js');
+var cart = require('./routes/cart');
 
+app.use('/cart', cart);
 app.use('/admin/pages', adminPages);
 app.use('/admin/categories', adminCategories);
 app.use('/admin/products', adminProducts);
 app.use('/users', users);
+app.use('/products', products);
 app.use('/', pages);
 
 //start the server

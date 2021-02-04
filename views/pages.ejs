@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/adminstyle.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
@@ -65,11 +67,15 @@
             <% pages.forEach(function(page){ %>
             <tr id="id_<%= page._id %>" class="<%= page.slug %>">
                 <td><%= page.title %></td>
-                <td><a href="/admin/pages/edit-page/<%= page._id %>">Edit</a></td>
+                <td><a href="/admin/pages/edit-page/<%= page._id %>">
+                  <i style="font-size:24px" class="fa">&#xf044;</i>
+                  Edit</a></td>
                 <% if (page.slug == "home") { %>
                 <td></td>
                 <% }  else {%>
-                <td><a class="confirmDeletion" href="/admin/pages/delete-page/<%= page._id %>">Delete</a></td>
+                <td><a class="confirmDeletion" href="/admin/pages/delete-page/<%= page._id %>">
+                  <i style="font-size:24px" class="fa">&#xf014;</i>
+                  Delete</a></td>
                 <% }%>
             </tr>
             <% }); %>

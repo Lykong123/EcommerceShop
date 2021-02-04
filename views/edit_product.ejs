@@ -75,6 +75,22 @@
             <label for="">Price</label>
             <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
         </div>
+
+        <div class="form-group">
+            <label for="">InstockAt</label>
+            <input type="text" class="form-control" name="instockAt" value="<%= instockAt %>" placeholder="InstockAt">
+        </div>
+
+        <div class="form-group">
+            <label for="">Quantity</label>
+            <input type="text" name="quantity" value="<%=quantity %> " placeholder="Quantity" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="">Price</label>
+            <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
+        </div>
+
         <div class="form-group">
             <label for="">Current Image</label>
             <p>
@@ -95,7 +111,6 @@
     </form>
 
     <hr>
-    <h3 class="page-header">Gallery</h3>
     <ul class="gallery">
         <% galleryImages.forEach(function(image){ %>
         <% if (image != "thumbs") { %>

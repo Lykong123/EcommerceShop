@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/adminstyle.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
@@ -55,20 +59,26 @@
       <table class="table table-striped alignmiddle">
         <thead>
           <tr class="home">
-            <th>Product</th>
-            <th>Price</th>
             <th>Category</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Detail</th>
+            <th>Product</th>
+            <th>In Stock At</th>
             <th>Product Image</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
         </thead>
-      <tbody>
-        <% products.forEach(function(product){ %>
-        <tr>
+        <tbody>
+          <% products.forEach(function(product){ %>
+          <tr>
             <td><%= product.title %></td>
             <td>$<%= parseFloat(product.price).toFixed(2) %></td>
+            <td><%= parseInt(product.quantity).toFixed(3) %> </td>
+            <td><%= product.desc %> </td>
             <td><%= product.category %></td>
+            <td><%= product.instockAt%> </td>
             <td>
                 <% if (product.image == "") { %>
                 <img id="noimage" src="/images/noimage.png">
@@ -76,8 +86,14 @@
                 <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>">
                 <% }%>
             </td>
-            <td><a href="/admin/products/edit-product/<%= product._id %>">Edit</a></td>
-            <td><a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">Delete</a></td>
+            <td><a href="/admin/products/edit-product/<%= product._id %>">
+              <i style="font-size:24px" class="fa">&#xf044;</i>
+              Edit
+            </a></td>
+            <td><a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">
+              <i style="font-size:24px" class="fa">&#xf014;</i>
+              Delete
+            </a></td>
         </tr>
         <% }); %>
       </tbody>
