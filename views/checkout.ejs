@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
         <link rel="stylesheet" href="/css/style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
@@ -44,7 +47,9 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="/cart/checkout">My Cart (
+                            <a href="/cart/checkout">
+                                <i style="font-size:24px" class="fa">&#xf07a;</i>
+                                My Cart (
                                 <% if (typeof cart !== "undefined") { %>
                                 <%= cart.length %>
                                 <% } else {%>
@@ -55,8 +60,13 @@
                         <% if (user) { %>
                         <li><a href="/users/logout">Hi, <%= user.username %> ( logout )</a></li>
                         <% } else {%>
-                        <li><a href="/users/register">Register</a></li>
-                        <li><a href="/users/login">Log in</a></li>
+                        <li><a href="/users/register">
+                            <i style="font-size:24px" class="fa">&#xf007;</i>
+                            Register</a></li>
+                        <li><a href="/users/login">
+                            <i style="font-size:24px" class="fa">&#xf090;</i>
+                            Log in
+                        </a></li>
                         <% } %>
                         <% if (user && user.admin == 1) { %>
                         <li><a href="/admin/pages">Admin Area</a></li>

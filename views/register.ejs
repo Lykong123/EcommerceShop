@@ -12,6 +12,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     </head>
 
+    <style>
+        .header{
+            margin: 2%;
+        }
+    </style>
     <body>
         <div class="ajaxbg">
             <div class="ajaxinner">
@@ -42,7 +47,6 @@
                         <% } %>
                         <% }); %>
                     </ul>
-
                     
                 </div><!--/.nav-collapse -->
             </div>
@@ -73,31 +77,41 @@
                 <div class="col-xs-12 col-md-8">
 
                     <form method="post" action="/users/register">
-                        <h1>Welcome to Awesome Shop</h1>
-                        <p>Don't have an account? Create your own account, it takes less than a minute.</p>
+                        <div class="header">
+                            <h1>Welcome to Awesome Shop</h1><br>
+                            <p>Don't have an account? Create your own account, it takes less than a minute.</p>
+                        </div>
+                       
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Name">
+                            
+                            <input type="text" name="name" class="form-control" placeholder="Name"><br>
                         </div>
                     
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" name="email" class="form-control" placeholder="Email">
+                           
+                            <input type="text" name="email" class="form-control" placeholder="Email"><br>
                         </div>
                         
                         <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control"  placeholder="Password">
+                            <input type="password" name="password" class="form-control"  placeholder="Password"><br>
                         </div>
                         
                         <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input type="password" name="password2" class="form-control"  placeholder="Confirm Password">
+                            <input type="password" name="password2" class="form-control"  placeholder="Confirm Password"><br>
                         </div>
-                    
-                        <button type="submit" class="btn btn-default">Register</button>
+                
+                        <button type="submit" class="btn btn-primary" style="width: 100%; border: 1.5px solid black;text-align: center;">Register</button>
                     </form>
 
+
+                    <div class="signin">
+                        <div style=" width: 100%;">
+                            <div class="" style="margin-top: 10px; text-align: center;"><br>
+                                Already have an account?
+                                <a href="/users/login">Sign in</a>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

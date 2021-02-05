@@ -62,7 +62,6 @@ router.get('/:category/:product', function (req, res) {
             });
         }
     });
-
 });
 
 

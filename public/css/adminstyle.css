@@ -32,3 +32,6 @@ ul.gallery li {
 table.alignmiddle td {
     vertical-align: middle !important;
 }
+.navbar avbar-inverse{
+    background-color: blue;
+}

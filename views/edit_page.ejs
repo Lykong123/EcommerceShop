@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/adminstyle.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
@@ -32,7 +33,10 @@
             <li><a href="/admin/products">Products</a></li>
           </ul>
            <ul class="nav navbar-nav navbar-right">
-               <li><a href="/users/logout">Logout</a></li>
+               <li><a href="/users/logout">
+                <i style="font-size:24px" class="fa">&#xf08b;</i>
+                Logout
+              </a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -71,7 +75,7 @@
             <textarea name="content" class="form-control" id="ta" cols="30" rows="10" placeholder="Content"><%= content %></textarea>
         </div>
         
-        <button class="btn btn-default">Submit</button>
+        <button class="btn btn-primary">Submit</button>
     </form>
 
 </div><!-- /.container -->
