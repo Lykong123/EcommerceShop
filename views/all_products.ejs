@@ -5,14 +5,63 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title><%= title %></title>
+        <title>Awesome Shop | Products</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
         <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/styles.css"/>
+        <link rel="stylesheet" href="/js/jquery.min.js">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
+    <style>
+        .nav-bar{
+            background-image: url("/product_images/Cloths-bc740630f228713e4bb0de8a7bffce22.png");
+            background-size: 100% 100%; 
+            background-repeat: no-repeat;
+            padding: 10%;
+        }
+        .brand-logo {
+            margin-right: auto;
+            
+        }
+        a:hover{
+            color: black;
+            text-decoration: none;
+            background-color: #ddd;
+        }
+        .product{
+            width: 100%;
+            border: 0.5px solid gray;
+            height: 660px;
+            padding: 15px;
+        }
 
+        .pagination {
+            display: inline-block;
+            margin-top: 290px;
+            float: right;
+        }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+        }
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+            border: 1px solid #4CAF50;
+        }
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+    </style>
     <body>
         <div class="ajaxbg">
             <div class="ajaxinner">
@@ -20,6 +69,7 @@
                 <img src="/images/ajax-loader.gif" alt=""/>
             </div>
         </div>
+
         <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
@@ -29,7 +79,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">Awesome Shop</a>
+                    <a class="navbar-brand">Awesome Shop</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -41,6 +91,7 @@
                         <% } %>
                         <% }); %>
                     </ul>
+                    
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="/cart/checkout">
@@ -72,6 +123,7 @@
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
+            
         </nav>
 
         <div class="container">
@@ -85,9 +137,26 @@
                 <% });%>
             <% }%>
     
+            <!-- navbar -->
+            <div class="nav-bar">
+                <div class=" brand-logo" style="padding: 0;">
+                    <p style="font-weight: bold;">Since 2020</p>
+                    <a href="">
+                        <h1 style="color: #A32CC4;">Awesome<span class="font-style" 
+                            style="color: rgb(51, 211, 51);">Shop</span>
+                        </h1>
+                    </a>
+                </div>
+                <p>Ready to wear dresses tailored for you from online. Hurry up while stock lasts</p><br>
+                <br><br><br><br><br><br>
+            </div>
+            <br>
             <div class="row">
                 <div class="col-xs-12 col-md-3">
-                    <h3>Categories</h3>
+                    <h3>
+                        <i style="font-size:24px" class="fa">&#xf0c9;</i>
+                        Categories
+                    </h3>
                     <ul class="list-group">
                         <li class="list-group-item"><a href="/products">All products</a></li>
                         <% categories.forEach(function(c){ %>
@@ -97,33 +166,41 @@
                 </div>
                 <div class="col-xs-12 col-md-1"></div>
                 <div class="col-xs-12 col-md-8">
-                    
-                
-
-                    <div class="row products">
-    
-                        <% products.forEach(function(p){ %>
-                                <div class="col-xs-12 col-md-4 p">
-                                    <a class="pa" href="/products/<%= p.category %>/<%= p.slug %>">
+                    <div class="product">
+                        <div style="background-color: rgb(253, 250, 250)">
+                            <% products.forEach(function(p){ %>
+                                <div class="header">
+                                    <div class="col-md-4">
+                                        <br>
                                         <img class="pimage" src="/product_images/<%= p.id %>/<%= p.image %>" alt="">
-                                    </a>
-                                    <h3><%= p.title %></h3>
-                                    <h4>$<%= parseFloat(p.price).toFixed(2) %></h4>
-                                    <a class="vd" href="/products/<%= p.category %>/<%= p.slug %>">View Details</a>
+                                        <h3 style="color: black"><%= p.title %></h3>
+                                        <h4 style="color: orange;">$<%= parseFloat(p.price).toFixed(2) %></h4>
+                                        <a class="vd" href="/products/<%= p.category %>/<%= p.slug %>">View Details</a><br>
+                                    </div>
                                 </div>
                             <% }); %>
-                        
+
+                            <!--pagination in case there are more than 6 products-->
+                            <div class="pagination">
+                                <a href="#">&laquo;</a>
+                                <a href="#">1</a>
+                                <a href="#" class="active">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">&raquo;</a>
+                            </div>
+                        </div>
                     </div>
-
-
-                </div>
-            </div>
-            </div><!-- /.container -->
-            <br><br><br>
-            <hr>
-            <p class="text-center">&COPY; Awesome Shop</p>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-                <script src="/js/main.js"></script>
-              </body>
-            </html>
+                </div><!-- /.container -->
+                <br><br><br>
+                <hr>
+            </div><br>
+            <p style="text-align: center;">&COPY; Awesome Shop</p>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+            <script src="/js/main.js"></script>
+            
+        </body>
+</html>

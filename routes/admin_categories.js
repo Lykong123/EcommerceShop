@@ -7,7 +7,7 @@ var isAdmin = auth.isAdmin;
 var Category = require('../models/category');
 
 //get categories
-router.get('/', function (req, res) {
+router.get('/' ,function (req, res) {
     Category.find(function (err, categories) {
         if (err)
             return console.log(err);

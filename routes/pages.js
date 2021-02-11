@@ -5,11 +5,6 @@ var router = express.Router();
 var Page = require('../models/page');
 
 //get home page
-router.get('/', function (req, res) {
-    res.render('home', {
-        title: 'Home'
-    });
-});
 
 //get a page
 //create slug to render all related page

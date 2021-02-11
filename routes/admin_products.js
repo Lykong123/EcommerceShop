@@ -277,7 +277,7 @@ router.post('/product-gallery/:id', function (req, res) {
 });
 
 //get delete image
-router.get('/delete-image/:image', isAdmin, function (req, res) {
+router.get('/delete-image/:image', function (req, res) {
 
     var originalImage = 'public/product_images/' + req.query.id + '/gallery/' + req.params.image;
     var thumbImage = 'public/product_images/' + req.query.id + '/gallery/thumbs/' + req.params.image;
@@ -318,7 +318,6 @@ router.get('/delete-product/:id', function (req, res) {
             res.redirect('products');
         }
     });
-
 });
 
 // Exports

@@ -137,7 +137,7 @@ router.post('/reorder-pages', function (req, res) {
 //})
 
 //get edit page
-router.get('/edit-page/:id', function (req, res) {
+router.get('/edit-page/:id',  function (req, res) {
     Page.findById(req.params.id, function (err, page) {
         if (err)
             return console.log(err);

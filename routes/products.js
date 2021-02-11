@@ -10,13 +10,16 @@ var Category = require('../models/category');
 
 //get all product
 router.get('/', function (req, res) {
+    const {page =1, limit=6} = req.query;
+    const products = Product.find().limit(limit *1).skip((page-1)*limit);
     Product.find(function(err, products){
         if(err)
             console.log(err);
         res.render('all_products', {
             title: 'All_products',
             products: products
-        });    
+        }); 
+        
     });
 });
 

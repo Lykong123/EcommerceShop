@@ -5,14 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title><%= title %></title>
+        <title>Awesome Shop | LOGIN</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
         <link rel="stylesheet" href="/css/style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
+    <style>
+        .header{
+            margin: 2%;
+        }
+    </style>
     <body>
         <div class="ajaxbg">
             <div class="ajaxinner">
@@ -43,33 +47,7 @@
                         <% } %>
                         <% }); %>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="/cart/checkout">
-								<i style="font-size:24px" class="fa">&#xf07a;</i>
-								My Cart (
-                                <% if (typeof cart !== "undefined") { %>
-                                <%= cart.length %>
-                                <% } else {%>
-                                0
-                                <% } %>
-                            )</a>
-                        </li>
-                        <% if (user) { %>
-                        <li><a href="/users/logout">Hi, <%= user.username %> ( logout )</a></li>
-                        <% } else {%>
-                        <li><a href="/users/register">
-							<i style="font-size:24px" class="fa">&#xf007;</i>
-							Register</a></li>
-                        <li><a href="/users/login">
-							<i style="font-size:24px" class="fa">&#xf090;</i>
-							Log in</a></li>
-                        <% } %>
-                        <% if (user && user.admin == 1) { %>
-                        <li><a href="/admin/pages">Admin Area</a></li>
-                        <% }%>
-                        
-                    </ul>
+                    
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
@@ -95,40 +73,44 @@
                         <% }); %>
                     </ul>
                 </div>
-
                 <div class="col-xs-12 col-md-1"></div>
                 <div class="col-xs-12 col-md-8">
-				<h1>
-					Welcome to Awesome Shop
-				</h1><br>
-				<p>Enter your email address and password to access to continue</p><br><br>
-				<form method="post" action="/users/login">		
-					<div class="form-group">
-						<input type="text" name="username" class="form-control" placeholder="Email address"><br>
-					</div>
-					<div class="form-group">
-						<input type="password" name="password" class="form-control"  placeholder="Password"><br>
-					</div>
-					<button type="submit" class="btn btn-primary" style="width: 100%; border: 1.5px solid black;text-align: center;">Log In</button>
 
-					<div class="signin">
+                    <form method="post" action="/users/login">
+                        <div class="header">
+                            <h1>Welcome to Awesome Shop</h1><br>
+                            <p>Enter your email address and password to access to continue.</p>
+                        </div>
+                    
+                        <div class="form-group">
+                           
+                            <input type="text" name="email" class="form-control" placeholder="Email"><br>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control"  placeholder="Password"><br>
+                        </div>
+                        
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; border: 1.5px solid black;text-align: center;">Login</button>
+                    </form>
+
+                    <div class="signin">
                         <div style=" width: 100%;">
                             <div class="" style="margin-top: 10px; text-align: center;"><br>
                                 Don't have an account?
-                                <a href="/users/login">Sign Up</a>
+                                <a href="/users/register">Sign Up</a>
                             </div>
                         </div>
                     </div>
-
-				</form>
-			</div>
-		</div>
-		</div><!-- /.container -->
-		<br><br><br>
-		<hr>
-		<p class="text-center">&COPY; Awesome Shop</p>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-		<script src="/js/main.js"></script>
-	</body>
+                </div>
+            </div>
+        </div><!-- /.container -->
+        <br><br><br>
+        <hr>
+        <p class="text-center">&COPY; Awesome Shop</p>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+        <script src="/js/main.js"></script>
+    </body>
 </html>
