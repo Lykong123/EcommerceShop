@@ -5,7 +5,7 @@ exports.isUser = function(req, res, next) {
        req.flash('danger', 'Please log in.');
         res.redirect('/users/login');
     }
-    console.log('isuser');
+   // console.log('isuser');
 }
 
 exports.isAdmin = function(req, res, next) {
@@ -14,6 +14,6 @@ exports.isAdmin = function(req, res, next) {
     } else {
        req.flash('danger', 'Please log in as admin.');
        res.redirect('/users/login');
-      console.log('isadmin')
+      //console.log('isadmin')
     }
 }

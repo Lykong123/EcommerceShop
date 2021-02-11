@@ -131,7 +131,7 @@ var adminPages = require('./routes/admin_pages.js');
 var adminCategories = require('./routes/admin_categories.js');
 var adminProducts = require('./routes/admin_products.js');
 var users = require('./routes/users.js');
-var cart = require('./routes/cart');
+var cart = require('./routes/cart.js');
 
 app.use('/cart', cart);
 app.use('/admin/pages', adminPages);

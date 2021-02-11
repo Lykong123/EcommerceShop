@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var bcrypt = require('bcryptjs');
+
 //get users model
 var User = require('../models/user');
 
@@ -9,8 +10,8 @@ var User = require('../models/user');
 router.get('/register', function(req, res){
     res.render('register', {
         title: 'Register'
-    })
-})
+    });
+});
 
 //post user register
 router.post('/register', function (req, res) {
@@ -32,22 +33,26 @@ router.post('/register', function (req, res) {
     if (errors) {
         res.render('register', {
             errors: errors,
-            user: null,
+            //user: null,
             title: 'Register'
         });
     } else {
         User.findOne({email: email}, function (err, user) {
             if (err)
                 console.log(err);
+
             if (user) {
                 req.flash('danger', 'Username exists, choose another!');
                 res.redirect('/users/register');
-            } else {
+            } 
+            
+            else {
                 var user = new User({
                     name: name,
                     email: email,
                     password: password,
-                    admin: 0
+                    admin: 0 
+                    //admin set to 1 for the case u want to register as a admin then equal to 0
                 });
                 bcrypt.genSalt(10, function (err, salt) {
                     bcrypt.hash(user.password, salt, function (err, hash) {

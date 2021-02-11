@@ -14,6 +14,9 @@ var UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    admin: {
+        type: Number
+    }
 },{collection: "users"});
 
 var User = module.exports = mongoose.model('User', UserSchema);
