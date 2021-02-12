@@ -40,7 +40,6 @@
 
         .pagination {
             display: inline-block;
-            margin-top: 290px;
             float: right;
         }
 
@@ -99,7 +98,7 @@
                             )</a>
                         </li>
                         <% if (user) { %>
-                        <li><a href="/users/logout">Hi, <%= user.name %> ( logout )</a></li>
+                        <li><a href="/users/logout"> ( logout )</a></li>
                         <% } else {%>
                         <li>
                             <a href="/users/register">
@@ -136,8 +135,10 @@
                 <div class=" brand-logo" style="padding: 0;">
                     <p style="font-weight: bold;">Since 2020</p>
                     <a href="">
-                        <h1 style="color: #A32CC4;">Awesome<span class="font-style" 
-                            style="color: rgb(51, 211, 51);">Shop</span>
+                        <h1 
+                        style="color: #A32CC4;">Awesome<span class="font-style" 
+                            style="color:
+                             rgb(51, 211, 51);">Shop</span>
                         </h1>
                     </a>
                 </div>

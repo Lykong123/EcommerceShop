@@ -64,14 +64,6 @@ router.post('/add-product', function (req, res) {
     var instockAt = req.body.instockAt;
     var price = req.body.price;
 
-    //var title = req.body.title;
-    //var slug = title.replace(/\s+/g, '-').toLowerCase();
-    //var desc = req.body.desc;
-   // var price = req.body.price;
-    //var category = req.body.category;
-    //var instockAt = req.body.instockAt;
-   // var quantity = req.body.quantity;
-
     var errors = req.validationErrors();
 
     if (errors) {
@@ -157,40 +149,31 @@ router.get('/edit-product/:id', function (req, res) {
                 console.log(err);
                 res.redirect('products');
             } else {
-                var galleryDir = 'public/product_images/' + p._id + '/gallery';
-                var galleryImages = null;
-                fs.readdir(galleryDir, function (err, files) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        galleryImages = files;
-                        res.render('edit_product', {
-                            title: p.title,
-                            errors: errors,
-                            desc: p.desc,
-                            categories: categories,
-                            category: p.category.replace(/\s+/g, '-').toLowerCase(),
-                            price: parseFloat(p.price).toFixed(2),
-                            quantity: parseInt(p.quantity).toFixed(2),
-                            instockAt: p.instockAt,
-                            image: p.image,
-                            galleryImages: galleryImages,
-                            id: p._id
-                        });
-                    }
-                });
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('edit_product', {
+                        title: p.title,
+                        errors: errors,
+                        desc: p.desc,
+                        categories: categories,
+                        category: p.category.replace(/\s+/g, '-').toLowerCase(),
+                        price: parseFloat(p.price).toFixed(2),
+                        quantity: p.quantity,
+                        instockAt: p.instockAt,
+                        id: p._id
+                    });
+                }
             }
         });
     });
 });
 
-//post edit product
+//post edit product by id but can't edit image of the product
 router.post('/edit-product/:id', function (req, res) {
-    var imageFile = typeof req.files.image !== "undefined" ? req.files.image.name : "";
     req.checkBody('title', 'Title must have a value.').notEmpty();
     req.checkBody('desc', 'Description must have a value.').notEmpty();
     req.checkBody('price', 'Price must have a value.').isDecimal();
-    req.checkBody('image', 'You must upload an image').isImage(imageFile);
     var title = req.body.title;
     var slug = title.replace(/\s+/g, '-').toLowerCase();
     var desc = req.body.desc;
@@ -198,7 +181,6 @@ router.post('/edit-product/:id', function (req, res) {
     var category = req.body.category;
     var quantity = req.body.quantity;
     var instockAt = req.body.instockAt;
-    var pimage = req.body.pimage;
     var id = req.params.id;
     var errors = req.validationErrors();
 
@@ -211,6 +193,7 @@ router.post('/edit-product/:id', function (req, res) {
                 console.log(err);
 
             if (p) {
+                console.log(p);
                 req.flash('danger', 'Product title exists, choose another.');
                 res.redirect('edit-product' + id);
             } else {
@@ -218,6 +201,7 @@ router.post('/edit-product/:id', function (req, res) {
                     if (err)
                         console.log(err);
 
+                    console.log(id);    
                     p.title = title;
                     p.slug = slug;
                     p.desc = desc;
@@ -225,29 +209,13 @@ router.post('/edit-product/:id', function (req, res) {
                     p.category = category;
                     p.instockAt = instockAt;
                     p.quantity = quantity;
-                    if (imageFile != "") {
-                        p.image = imageFile;
-                    }
+                   
                     p.save(function (err) {
                         if (err)
-                            console.log(err);
-                        if (imageFile != "") {
-                            if (pimage != "") {
-                                fs.remove('public/product_images/' + id + '/' + pimage, function (err) {
-                                    if (err)
-                                        console.log(err);
-                                });
-                            }
-
-                            var productImage = req.files.image;
-                            var path = 'public/product_images/' + id + '/' + imageFile;
-
-                            productImage.mv(path, function (err) {
-                                return console.log(err);
-                            });
-                        }
+                            console.log(err); 
+                
                         req.flash('success', 'Product edited!');
-                        res.redirect('/admin/products/edit-product/' + id);
+                        res.redirect('/admin/products');
                     });
 
                 });
@@ -255,69 +223,6 @@ router.post('/edit-product/:id', function (req, res) {
         });
     }
 
-});
-
-//post product gallery
-router.post('/product-gallery/:id', function (req, res) {
-    var productImage = req.files.file;
-    var id = req.params.id;
-    var path = 'public/product_images/' + id + '/gallery/' + req.files.file.name;
-    var thumbsPath = 'public/product_images/' + id + '/gallery/thumbs/' + req.files.file.name;
-
-    productImage.mv(path, function (err) {
-        if (err)
-            console.log(err);
-
-        resizeImg(fs.readFileSync(path), {width: 100, height: 100}).then(function (buf) {
-            fs.writeFileSync(thumbsPath, buf);
-        });
-    });
-
-    res.sendStatus(200);
-});
-
-//get delete image
-router.get('/delete-image/:image', function (req, res) {
-
-    var originalImage = 'public/product_images/' + req.query.id + '/gallery/' + req.params.image;
-    var thumbImage = 'public/product_images/' + req.query.id + '/gallery/thumbs/' + req.params.image;
-
-    fs.remove(originalImage, function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            fs.remove(thumbImage, function (err) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    req.flash('success', 'Image deleted!');
-                    res.redirect('products');
-                }
-            });
-        }
-    });
-});
-
-/*
- * GET delete product
- */
-router.get('/delete-product/:id', function (req, res) {
-
-    var id = req.params.id;
-    var path = 'public/product_images/' + id;
-
-    fs.remove(path, function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            Product.findByIdAndRemove(id, function (err) {
-                console.log(err);
-            });
-            
-            req.flash('success', 'Product deleted!');
-            res.redirect('products');
-        }
-    });
 });
 
 // Exports
