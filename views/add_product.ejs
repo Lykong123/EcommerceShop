@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
+  <style>
+    .input{
+      background-color: rgb(253, 250, 250);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
   <body>
 
     <nav class="navbar navbar-inverse">
@@ -57,31 +63,43 @@
     <form method="post" action="/admin/products/add-product" enctype="multipart/form-data">
 
       <div class="form-group">
-        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+        <div class="input">
+          <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+        </div>
       </div>
 
       <div class="form-group">
-        <textarea name="desc" class="form-control" cols="30" rows="10" placeholder="Description"><%= desc %></textarea>
+        <div class="input">
+          <textarea name="desc" class="form-control" cols="30" rows="10" placeholder="Description"><%= desc %></textarea>
+        </div>
       </div>
 
       <div class="form-group">
-        <select name="category" class="form-control">
+        <div class="input">
+          <select name="category" class="form-control">
             <% categories.forEach(function(cat){ %>
                 <option value="<%= cat.slug %>"><%= cat.title %></option>
             <% }); %>
-        </select>
+          </select>
+        </div>
       </div>
 
       <div class="form-group">
-        <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
+        <div class="input">
+          <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
+        </div>
       </div>
 
       <div class="form-group">
-        <input type="text" class="form-control" name="instockAt" value="<%=instockAt  %>" placeholder="In Stock At" >
+        <div class="input">
+          <input type="text" class="form-control" name="instockAt" value="<%=instockAt  %>" placeholder="In Stock At" >
+        </div>
       </div>
 
       <div class="form-group">
-        <input type="text" name="quantity" class="form-control" value="<%=quantity  %>" placeholder="Quantity">
+        <div class="input">
+          <input type="text" name="quantity" class="form-control" value="<%=quantity  %>" placeholder="Quantity">
+        </div>
       </div>
       
       <div class="form-group">

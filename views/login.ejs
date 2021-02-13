@@ -14,8 +14,36 @@
     </head>
 
     <style>
-        .header{
-            margin: 2%;
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two equal columns that floats next to each other */
+            .column {
+            float: left;
+            width: 50%;
+            padding: 20px;
+            height: 300px; /* Should be removed. Only for demonstration */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .login-form{
+            width: 70%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            padding: 15px;
+            float: right;
+        }
+
+        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */    
+        @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
         }
     </style>
     <body>
@@ -81,52 +109,38 @@
                 <% });%>
             <% }%>
     
-            <div class="row">
-                <div class="col-xs-12 col-md-3">
-                    <h3>
-                        <i style="font-size:24px" class="fa">&#xf0c9;</i>
-                        Categories</h3>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="/products">All products</a></li>
-                        <% categories.forEach(function(c){ %>
-                            <li class="list-group-item"><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
-                        <% }); %>
-                    </ul>
+            <div class="row" style="margin-top: 5%;">
+                <div class="column">
+                    <p 
+                    style="font-weight: bold; font-size: 40px; color: rgb(58, 58, 233)">Welcome to Awesome Shop</p><br>
+                    <p style="font-size: 30px;">Enter your email address and password to access to continue.</p>
                 </div>
-                <div class="col-xs-12 col-md-1"></div>
-                <div class="col-xs-12 col-md-8">
 
-                    <form method="post" action="/users/login">
-                        <div class="header">
-                            <h1 
-                            style="color: rgb(58, 58, 233)">Welcome to Awesome Shop</h1><br>
-                            <p>Enter your email address and password to access to continue.</p>
-                        </div>
-                    
-                        <div class="form-group">
-                           
-                            <input type="text" name="email" class="form-control" placeholder="Email"><br>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="password" name="password" class="form-control"  placeholder="Password"><br>
-                        </div>
-                    
-                        <button type="submit" class="btn btn-primary" style="width: 100%; border: 1.5px solid black;text-align: center;">Login</button>
-                    </form>
-
-                    <div class="signin">
-                        <div style=" width: 100%;">
-                            <div class="" style="margin-top: 10px; text-align: center;"><br>
-                                Don't have an account?
-                                <a href="/users/register">Sign Up</a>
+                <div class="column">
+                    <div class="login-form">
+                        <form method="post" action="/users/login">
+                            <div class="form-group">
+                                <input type="text" name="email" class="form-control" placeholder="Email"><br>
                             </div>
-                        </div>
+                                
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control"  placeholder="Password"><br>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" style="width: 100%; border: 1.5px solid black;text-align: center;">Login</button>
+                                
+                            <div style=" width: 100%;">
+                                <div class="" style="margin-top: 10px; text-align: center;"><br>
+                                    Don't have an account?
+                                    <a href="/users/register">Sign Up</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>
+              </div>
         </div><!-- /.container -->
-        <br><br><br>
+        <br><br><br><br><br><br>
         <hr>
         <p class="text-center">&COPY; Awesome Shop</p>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

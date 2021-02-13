@@ -21,13 +21,91 @@
         }
         .brand-logo {
             margin-right: auto;
-            
         }
         a:hover{
             color: black;
             text-decoration: none;
             background-color: #ddd;
         }
+        .vl {
+            border-left: 0.5px solid rgb(236, 227, 227);
+            height: 300px;
+            position: absolute;
+            left: 43%;
+            margin-left: -3px;
+        }
+        .box{
+            border: 2px solid black;
+            width: 100%;
+            height: 330px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            background-color: rgb(253, 250, 250);
+        }
+
+        .flex-content {
+            display: flex;
+            color: white;
+            flex-direction: row;  
+        }
+        .flex-content > div{
+            align-items: center;
+            margin: 10px;
+        }
+        .flex-content .content{
+            margin-left: 1%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 2%;
+            padding-top: 5px;
+        }
+        .content img{
+            width:70px;
+        }
+        .content1 {
+            background-color: rgb(241, 147, 163);
+            width: 100%;
+            border: solid 2px black;
+            margin-left: 20px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .content2 {
+            background-color:  rgb(243, 205, 134);
+            width: 100%;
+            border: solid 2px black;
+            margin-left: 20px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .content3 {
+            background-color: rgb(223, 126, 223);
+            width: 100%;
+            border: solid 2px black;
+            margin-left: 30px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .header{
+            margin-right: auto;
+            margin-bottom: 80px;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .btn{
+            background-color: white;
+            height: 25px;
+            margin-bottom: 20px;
+            border: 1px solid gray; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            outline: none;
+            color: black;
+            padding: 2px;
+        }
+
     </style>
     <body>
         
@@ -64,19 +142,15 @@
                                 <% } %>
                             )</a>
                         </li>
-                        <% if (user) { %>
-                        <li><a href="/users/logout">Hi, <%= user.username %> ( logout )</a></li>
-                        <% } else {%>
+                        <% { %>
                         <li><a href="/users/register">
                             <i style="font-size:24px" class="fa">&#xf007;</i>
-                            Register
-                        </a></li>
-                        <li><a href="/users/login">
-                            <i style="font-size:24px" class="fa">&#xf090;</i>
-                            Log in
-                        </a></li>
-                        <% } %>
-                        <% if (user && user.admin == 1) { %>
+                            Register</a></li>
+                        <li><a href="/users/logout">
+                            <i style="font-size:24px" class="fa">&#xf08b;</i>
+                            Log out</a></li>
+                            <% } %>
+                            <% if (user && user.admin == 1) { %>
                         <li><a href="/admin/pages">Admin Area</a></li>
                         <% }%>
                         
@@ -112,9 +186,39 @@
                 <p>Ready to wear dresses tailored for you from online. Hurry up while stock lasts</p><br>
                 <br><br><br><br><br><br>
             </div>
-            <br>
+            <br><br>
 
             <div class="row">
+                <!-- middle part -->
+                <div class="flex-content">
+                    <div class="content content1">
+                        <div class="header">
+                            <img src="/product_images/icons8-coupon-100.png" alt="" style="float: right;">
+                            <h4>Coupon Savings</h4>
+                            <p style="margin-top: 10px;">Up to 60% off everyday</p><br>
+                            <button class="btn">Shop Coupon</button>   
+                        </div>  
+                    </div>
+                    
+                    <div class="content content2">
+                        <div class="header">
+                            <img src="/product_images/checked-truck.png" alt="" style="float: right;"> 
+                            <h4>Free Delivery</h4>
+                            <p style="margin-top: 10px;">With selected items</p><br>
+                            <button class="btn">Deliver Now</button>
+                        </div>
+                    </div>
+                
+                    <div class="content content3">
+                        <div class="header">
+                            <img src="/product_images/gift--v1.png" alt="" style="float: right;">
+                            <h4>Gift Voucher</h4>
+                            <p style="margin-top: 10px;">With personal core items</p><br>
+                            <button class="btn">Gift Now</button>  
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-xs-12 col-md-3">
                     <h3>
                         <i style="font-size:24px" class="fa">&#xf0c9;</i>
@@ -128,18 +232,24 @@
                 </div>
             <div class="col-xs-12 col-md-1"></div>
             <div class="col-xs-12 col-md-8">
-            <div class="row products">
-                <% products.forEach(function(p){ %>
-                    <div class="col-xs-12 col-md-4 p">
-                        <a class="pa" href="/products/<%= p.category %>/<%= p.slug %>">
-                            <img class="pimage" src="/product_images/<%= p.id %>/<%= p.image %>" alt="">
-                        </a>
-                        <h3 style="font-weight: bold;"><%= p.title %></h3>
-                        <h4 style="color: orange;">$<%= parseFloat(p.price).toFixed(2) %></h4>
-                        <a class="vd" href="/products/<%= p.category %>/<%= p.slug %>">View Details</a>
-                    </div>
-                <% }); %>
-            </div>
+                <div class="row products">
+                    <% products.forEach(function(p){ %>
+                        <div class="col-xs-12 col-md-4 p">
+                            <div class="box">
+                                <a class="pa" href="/products/<%= p.category %>/<%= p.slug %>">
+                                    <img class="pimage" src="/product_images/<%= p.id %>/<%= p.image %>" alt="">
+                                </a>
+                                <p style="font-weight: bold;"><%= p.title %></p>
+                                <h4 style="color:  rgb(163, 163, 236);">$<%= parseFloat(p.price).toFixed(2) %></h4>
+                                <br><br>
+                                <a class="vd" href="/products/<%= p.category %>/<%= p.slug %>">
+                                    <i style="font-size:24px" class="fa">&#xf06e;</i>
+                                    View Details</a>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>    
         </div><!-- /.container -->
         <br><br><br>
         <hr>

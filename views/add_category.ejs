@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
+  <style>
+    .input{
+      background-color: rgb(253, 250, 250);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
   <body>
 
     <nav class="navbar navbar-inverse">
@@ -59,8 +65,9 @@
 
     <form method="post" action="/admin/categories/add-category">
         <div class="form-group">
-            <label for="">Title</label>
+          <div class="input">
             <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+          </div>
         </div>
         <button class="btn btn-primary">Submit</button>
     </form>

@@ -24,18 +24,19 @@
         }
         .brand-logo {
             margin-right: auto;
-            
         }
         a:hover{
             color: black;
             text-decoration: none;
             background-color: #ddd;
         }
-        .product{
+        .pic{
+            border: 2px solid black;
             width: 100%;
-            border: 0.5px solid gray;
-            height: 660px;
+            height: 300px;
             padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            background-color: rgb(253, 250, 250);
         }
 
         .pagination {
@@ -59,10 +60,77 @@
         .pagination a:hover:not(.active) {
             background-color: #ddd;
         }
+        .vl {
+            border-left: 0.5px solid rgb(236, 227, 227);
+            height: 300px;
+            position: absolute;
+            left: 43%;
+            margin-left: -3px;
+        }
+        .flex-content {
+            display: flex;
+            color: white;
+            flex-direction: row;  
+        }
+        .flex-content > div{
+            align-items: center;
+            margin: 10px;
+        }
+        .flex-content .content{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 2%;
+            padding-top: 10px;
+        }
+        .content img{
+            width:70px;
+        }
+        .content1 {
+            background-color: rgb(241, 147, 163);
+            width: 100%;
+            border: solid 1.5px black;
+            margin-left: 20px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .content2 {
+            background-color:  rgb(243, 205, 134);
+            width: 100%;
+            border: solid 1.5px black;
+            margin-left: 20px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .content3 {
+            background-color: rgb(223, 126, 223);
+            width: 100%;
+            border: solid 1.5px black;
+            margin-left: 30px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .header{
+            margin-right: auto;
+            margin-bottom: 80px;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .btn{
+            background-color: white;
+            height: 25px;
+            margin-bottom: 20px;
+            border: 2px solid gray; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            outline: none;
+            color: black;
+            padding: 2px;
+        }
 
     </style>
     <body>
-
         <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
@@ -97,21 +165,17 @@
                                 <% } %>
                             )</a>
                         </li>
-                        <% if (user) { %>
-                        <li><a href="/users/logout"> ( logout )</a></li>
-                        <% } else {%>
-                        <li>
-                            <a href="/users/register">
+                        <%  { %>
+                        <li><a href="/users/register">
                             <i style="font-size:24px" class="fa">&#xf007;</i>
-                            Register
-                        </a></li>
-                        <li><a href="/users/login">
-                            <i style="font-size:24px" class="fa">&#xf090;</i>
-                            Log In</a></li>
-                        <% } %>
-                        <% if (user && user.admin == 1) { %>
+                            Register</a></li>
+                        <li><a href="/users/logout">
+                            <i style="font-size:24px" class="fa">&#xf08b;</i>
+                            Log out</a></li>
+                            <% } %>
+                            <% if (user && user.admin == 1) { %>
                         <li><a href="/admin/pages">Admin Area</a></li>
-                        <% }%>
+                            <% }%>
                         
                     </ul>
                 </div><!--/.nav-collapse -->
@@ -119,81 +183,116 @@
             
         </nav>
 
-        <div class="container">
-            <%- messages('messages', locals) %>
+            <div class="container">
+                <%- messages('messages', locals) %>
             
-            <% if (errors) {%>
-                <% errors.forEach(function(error) { %>
-                <div class="alert alert-danger">
-                    <%= error.msg %>
-                </div>
-                <% });%>
-            <% }%>
+                <% if (errors) {%>
+                    <% errors.forEach(function(error) { %>
+                    <div class="alert alert-danger">
+                        <%= error.msg %>
+                    </div>
+                    <% });%>
+                <% }%>
     
-            <!-- navbar -->
-            <div class="nav-bar">
-                <div class=" brand-logo" style="padding: 0;">
-                    <p style="font-weight: bold;">Since 2020</p>
-                    <a href="">
-                        <h1 
-                        style="color: #A32CC4;">Awesome<span class="font-style" 
-                            style="color:
-                             rgb(51, 211, 51);">Shop</span>
-                        </h1>
-                    </a>
+                <!-- navbar -->
+                <div class="nav-bar">
+                    <div class=" brand-logo" style="padding: 0;">
+                        <p style="font-weight: bold;">Since 2020</p>
+                        <a href="">
+                            <h1 
+                                style="color: #A32CC4;">Awesome<span class="font-style" 
+                                style="color: rgb(51, 211, 51);">Shop</span>
+                            </h1>
+                        </a>
+                    </div>
+                    <p>Ready to wear dresses tailored for you from online. Hurry up while stock lasts</p><br>
+                    <br><br><br><br><br><br>
                 </div>
-                <p>Ready to wear dresses tailored for you from online. Hurry up while stock lasts</p><br>
-                <br><br><br><br><br><br>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-12 col-md-3">
-                    <h3>
-                        <i style="font-size:24px" class="fa">&#xf0c9;</i>
-                        Categories
-                    </h3>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="/products">All products</a></li>
-                        <% categories.forEach(function(c){ %>
-                            <li class="list-group-item"><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
-                        <% }); %>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-md-1"></div>
-                <div class="col-xs-12 col-md-8">
-                    <div class="product">
-                        <div style="background-color: rgb(253, 250, 250)">
-                            <% products.forEach(function(p){ %>
-                                <div class="header">
-                                    <div class="col-md-4">
-                                        <br>
-                                        <img class="pimage" src="/product_images/<%= p.id %>/<%= p.image %>" alt="">
-                                        <h3 style="color: black"><%= p.title %></h3>
-                                        <h4 style="color: orange;">$<%= parseFloat(p.price).toFixed(2) %></h4>
-                                        <a class="vd" href="/products/<%= p.category %>/<%= p.slug %>">View Details</a><br>
-                                    </div>
-                                </div>
-                            <% }); %>
+                <br><br>
 
-                            <!--pagination in case there are more than 6 products-->
-                            <div class="pagination">
-                                <a href="#">&laquo;</a>
-                                <a href="#">1</a>
-                                <a href="#" class="active">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">&raquo;</a>
+                <div class="row">
+                    <!--middle part -->
+                    <div class="flex-content">
+                        <div class="content content1">
+                            <div class="header">
+                                <img src="/product_images/icons8-coupon-100.png" alt="" style="float: right;">
+                                <h4>Coupon Savings</h4>
+                                <p style="margin-top: 10px;">Up to 60% off everyday</p><br>
+                                <button class="btn">Shop Coupon</button>   
+                            </div>  
+                        </div>
+                        
+                        <div class="content content2">
+                            <div class="header">
+                                <img src="/product_images/checked-truck.png" alt="" style="float: right;"> 
+                                <h4>Free Delivery</h4>
+                                <p style="margin-top: 10px;">With selected items</p><br>
+                                <button class="btn">Deliver Now</button>
+                            </div>
+                        </div>
+                    
+                        <div class="content content3">
+                            <div class="header">
+                                <img src="/product_images/gift--v1.png" alt="" style="float: right;">
+                                <h4>Gift Voucher</h4>
+                                <p style="margin-top: 10px;">With personal core items</p><br>
+                                <button class="btn">Gift Now</button>  
                             </div>
                         </div>
                     </div>
-                </div><!-- /.container -->
+
+                    <div class="col-xs-12 col-md-3">
+                        <h3>
+                            <i style="font-size:24px" class="fa">&#xf0c9;</i>
+                            Categories
+                        </h3>
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="/products">All products</a></li>
+                            <% categories.forEach(function(c){ %>
+                                <li class="list-group-item"><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
+                            <% }); %>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-md-1"></div>
+                    <div class="col-xs-12 col-md-8">
+                            <div class="product">
+                                <div style="background-color: rgb(253, 250, 250)">
+                                    <% products.forEach(function(p){ %>
+                                    <div class="header">
+                                        <div class="col-md-4">
+                                            <br>
+                                            <div class="pic">
+                                                <img class="pimage" src="/product_images/<%= p.id %>/<%= p.image %>" alt="">
+                                                <p style="font-weight: bold; color: black"><%= p.title %></p>
+                                                <h4 style="color:  rgb(163, 163, 236)">$<%= parseFloat(p.price).toFixed(2) %></h4><br><br>
+                                                <a class="vd" href="/products/<%= p.category %>/<%= p.slug %>">
+                                                    <i style="font-size:24px" class="fa">&#xf06e;</i>
+                                                    View Details</a><br>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <% }); %>
+
+                                    <!--pagination in case there are more than 6 products-->
+                                <div class="pagination">
+                                    <a href="#">&laquo;</a>
+                                    <a href="#" class="active">1</a>
+                                    <a href="#">2</a>
+                                    <a href="#">3</a>
+                                    <a href="#">4</a>
+                                    <a href="#">&raquo;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.container -->
                 <br><br><br>
                 <hr>
-            </div><br>
+            </div>
+            <hr>
             <p style="text-align: center;">&COPY; Awesome Shop</p>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
             <script src="/js/main.js"></script>
             
-        </body>
+    </body>
 </html>
