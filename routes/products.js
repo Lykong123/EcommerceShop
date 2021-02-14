@@ -11,7 +11,7 @@ var Product = require('../models/product');
 var Category = require('../models/category');
 
 //get all product
-router.get('/' ,isUser,function (req, res) {
+router.get('/' ,function (req, res) {
     const {page =1, limit=6} = req.query;
     const products = Product.find().limit(limit *1).skip((page-1)*limit);
     Product.find(function(err, products){

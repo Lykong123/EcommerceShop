@@ -14,10 +14,9 @@
     </head>
 
     <style>
-        * {
+         * {
             box-sizing: border-box;
         }
-
         /* Create two equal columns that floats next to each other */
         .column {
             float: left;
@@ -25,7 +24,6 @@
             padding: 10px;
             height: 300px; /* Should be removed. Only for demonstration */
         }
-
         /* Clear floats after the columns */
         .row:after {
             content: "";
@@ -38,7 +36,6 @@
             padding: 15px;
             float: right;
         }
-
         /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 600px) {
             .column {
@@ -47,12 +44,6 @@
         }
     </style>
     <body>
-        <div class="ajaxbg">
-            <div class="ajaxinner">
-                <h3>You are now being direct to online payment</h3>
-                <img src="/images/ajax-loader.gif" alt=""/>
-            </div>
-        </div>
         <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
@@ -86,18 +77,21 @@
                                 <% } %>
                             )</a>
                         </li>
-                        <%  {%>
-                        <li><a href="/users/register">
-                            <i style="font-size:24px" class="fa">&#xf007;</i>
-                            Register</a></li>
-                        <li><a href="/users/logout">
-                            <i style="font-size:24px" class="fa">&#xf08b;</i>
-                            Log out</a></li>
-                        <% } %>
-                        <% if (user && user.admin == 1) { %>
-                        <li><a href="/admin/pages">Admin Area</a></li>
-                        <% }%>
-                        
+                        <% if (user) { %>
+                            <li><a href="/users/logout">
+                                <i style="font-size:24px" class="fa">&#xf08b;</i>
+                                Hi, <%= user.name %> ( logout )</a></li>
+                            <% } else {%>
+                            <li><a href="/users/register">
+                                <i style="font-size:24px" class="fa">&#xf007;</i>
+                                Register</a></li>
+                            <li><a href="/users/login">
+                                <i style="font-size:24px" class="fa">&#xf090;</i>
+                                Log in</a></li>
+                            <% } %>
+                            <% if (user && user.admin == 1) { %>
+                            <li><a href="/admin/pages">Admin Area</a></li>
+                            <% }%> 
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -113,34 +107,39 @@
                 </div>
                 <% });%>
             <% }%>
-         
-            <div class="row" style="margin-top: 5%;">
+    
+            <div class="row" style="margin-top: 5%">
                 <div class="column">
                     <p 
                     style="font-weight: bold; font-size: 40px; color: rgb(58, 58, 233)">Welcome to Awesome Shop</p><br>
                     <p style="font-size: 25px;">Don't have an account? Create your own account, it takes less than a minute.</p>
-                </div>
+                </div>                 
+
                 <div class="column">
                     <div class="register-form">
                         <form method="post" action="/users/register">
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" placeholder="Name"><br>
+                                <input type="text" name="name" class="form-control" placeholder="Name">
                             </div>
-    
+                        
                             <div class="form-group">
-                                <input type="text" name="email" class="form-control" placeholder="Email"><br>
+                                <input type="text" name="email" class="form-control" placeholder="Email">
                             </div>
                             
                             <div class="form-group">
-                                <input type="password" name="password" class="form-control"  placeholder="Password"><br>
+                                <input type="text" name="username" class="form-control" placeholder="Username">
                             </div>
-    
+                        
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control"  placeholder="Password">
+                            </div>
+                            
                             <div class="form-group">
                                 <input type="password" name="password2" class="form-control"  placeholder="Confirm Password"><br>
                                 <input type="checkbox" required id="check" onclick="checkMe()">&nbsp;
                                 I accept Terms and Conditions
                             </div>
-    
+                        
                             <button type="submit" class="btn btn-primary" style="width: 100%; border: 1.5px solid black;text-align: center;">Register</button>
     
                             <div class="signin">
@@ -152,15 +151,18 @@
                                 </div>
                             </div>
                         </form>
+                        
                     </div>
                 </div>
+
+                </div>
             </div>
-        </div><!-- /.container -->
-        <br><br><br><br><br><br><br>
-        <hr>
-        <p class="text-center">&COPY; Awesome Shop</p>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-        <script src="/js/main.js"></script>
-    </body>
-</html>
+            </div><!-- /.container -->
+            <br><br><br><br><br><br>
+            <hr>
+            <p class="text-center">&COPY; Awesome Shop</p>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+                <script src="/js/main.js"></script>
+              </body>
+            </html>

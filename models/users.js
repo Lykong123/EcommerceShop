@@ -2,11 +2,15 @@ var mongoose = require('mongoose');
 
 //user schema
 var UserSchema = mongoose.Schema({
-    name:{
+    name: {
         type: String,
         required: true
     },
-    email:{
+    email: {
+        type: String,
+        required: true
+    },
+    username: {
         type: String,
         required: true
     },
@@ -17,6 +21,6 @@ var UserSchema = mongoose.Schema({
     admin: {
         type: Number
     }
-},{collection: "users"});
+})
 
 var User = module.exports = mongoose.model('User', UserSchema);

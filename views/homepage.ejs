@@ -4,21 +4,15 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title><%= title %></title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
         <link rel="stylesheet" href="/css/style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
-        <div class="ajaxbg">
-            <div class="ajaxinner">
-                <h3>You are now being direct to online payment</h3>
-                <img src="/images/ajax-loader.gif" alt=""/>
-            </div>
-        </div>
         <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
@@ -28,8 +22,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">CmsShoppingCart</a>
+                    <a class="navbar-brand">Awesome Shop</a>
                 </div>
+
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <% pages.forEach(function(page){ %>
@@ -40,21 +35,31 @@
                         <% } %>
                         <% }); %>
                     </ul>
+
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="/cart/checkout">My Cart (
+                            <a href="/cart/checkout">
+                                <i style="font-size:24px" class="fa">&#xf07a;</i>
+                                My Cart (
                                 <% if (typeof cart !== "undefined") { %>
                                 <%= cart.length %>
                                 <% } else {%>
                                 0
                                 <% } %>
                             )</a>
+
                         </li>
                         <% if (user) { %>
-                        <li><a href="/users/logout">Hi, <%= user.email %> ( logout )</a></li>
+                        <li><a href="/users/logout">
+                            <i style="font-size:24px" class="fa">&#xf08b;</i>
+                            Hi, <%= user.name %> ( logout )</a></li>
                         <% } else {%>
-                        <li><a href="/users/register">Register</a></li>
-                        <li><a href="/users/login">Log in</a></li>
+                        <li><a href="/users/register">
+                            <i style="font-size:24px" class="fa">&#xf007;</i>
+                            Register</a></li>
+                        <li><a href="/users/login">
+                            <i style="font-size:24px" class="fa">&#xf090;</i>
+                            Log in</a></li>
                         <% } %>
                         <% if (user && user.admin == 1) { %>
                         <li><a href="/admin/pages">Admin Area</a></li>
@@ -89,5 +94,18 @@
                 <div class="col-xs-12 col-md-1"></div>
                 <div class="col-xs-12 col-md-8">
 
+
+
+
+            </div>
+        </div><!-- /.container -->
+        <br><br><br><br><br><br><br><br><br>
+        <hr>
+        <p class="text-center">&COPY; Awesome Shop</p>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+        <script src="/js/main.js"></script>
+    </body>
+</html>
                   
 
