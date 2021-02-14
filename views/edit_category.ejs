@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Edit-Category|Admin Area</title>
+    <title>Edit-Category | Admin Area</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/adminstyle.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -53,17 +53,19 @@
     
 
     <h2 class="page-title">Edit a category</h2>
-<a href="/admin/categories" class="btn btn-primary">Back to all categories</a>
+<a href="/admin/categories" class="btn btn-primary" style="box-shadow: 0 0 10px rgba(0,0,0,0.5);">Back to all categories</a>
 <br><br>
 
 <form method="post" action="/admin/categories/edit-category/<%= id %>">
     
     <div class="form-group">
         <label for="">Title</label>
-        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
-    </div>
+        <div style="box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+          <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+        </div>
+    </div><br>
 
-    <button class="btn btn-default">Submit</button>
+    <button class="btn btn-primary" style="box-shadow: 0 0 10px rgba(0,0,0,0.5);">Submit</button>
 </form>
 
 </div><!-- /.container -->

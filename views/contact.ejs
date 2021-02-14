@@ -56,7 +56,7 @@
             border-left: 0.5px solid gainsboro;
             height: 250px;
             position: absolute;
-            left: 66.66%;
+            left: 64%;
             margin-left: -3px;
             margin-top: 15px;
         }
@@ -85,20 +85,7 @@
                         <% } %>
                         <% }); %>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="/cart/checkout">
-                                <i style="font-size:24px" class="fa">&#xf07a;</i>
-                                My Cart (
-                                <% if (typeof cart !== "undefined") { %>
-                                <%= cart.length %>
-                                <% } else {%>
-                                0
-                                <% } %>
-                            )</a>
-                        </li>
-                       
-                    </ul>
+                   
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
@@ -114,30 +101,15 @@
                 <% });%>
             <% }%>
     
-            <div class="row">
-                <div class="col-xs-12 col-md-3">
-                    <h3>
-                        <i style="font-size:24px" class="fa">&#xf0c9;</i>
-                        Categories</h3>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="/products">All products</a></li>
-                        <% categories.forEach(function(c){ %>
-                            <li class="list-group-item"><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
-                        <% }); %>
-                    </ul>
-                </div>
-            <div class="col-xs-12 col-md-1"></div>
-            <div class="col-xs-12 col-md-8">
                <h1 style="text-align: center;">CONTACT US</h1><br>
-              
 
                <div class="row">
                     <div class="column" style="background-color:white;">
                         <h2>
                             <i style='font-size:24px' class='fas'>&#xf27a;</i>
                             Chat with us</h2><br>
-                        <p>We’re available Monday through Friday from 9 AM to 9 PM, and Saturday & Sunday from 10 AM to 6 PM EST.</p><br>
-                        <button type="button" class="btn btn-dark">Chat now</button>
+                        <p>We’re available Monday through Friday from 9 AM to <br> 9 PM, and Saturday & Sunday from 10 AM to <br> 6 PM EST.</p><br>
+                        <button type="button" class="btn btn-dark" style="box-shadow: 0 0 10px rgba(0,0,0,0.2);">Chat now</button>
                     </div>
                     <div class="vl"></div>
                     <div class="column" style="background-color:white;">
@@ -149,15 +121,14 @@
                         <p>+855 11 22 333</p>
                     </div>
                     <div class="v2"></div>
-                    <div class="column" style="background-color:white;">
+                    <div class="column" style="background-color:white;" style="padding: 15px;">
                         <h2>
                             <i style="font-size:24px" class="fa">&#xf0e0;</i>
                             Write to us</h2><br>
                         <p>Fill out our form and a Style Consultant will contact you.</p><br>
-                        <button type="button" class="btn btn-dark">Write Now</button>
+                        <button type="button" class="btn btn-dark" style="box-shadow: 0 0 10px rgba(0,0,0,0.2);">Write Now</button>
                     </div>
                 </div>
-            </div>
         </div>
         </div><!-- /.container -->
         <br><br><br><br><br>
