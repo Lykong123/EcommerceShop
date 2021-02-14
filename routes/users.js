@@ -18,13 +18,11 @@ router.get('/register', function (req, res) {
 //post register
 router.post('/register', function (req, res) {
 
-    var name = req.body.name;
     var email = req.body.email;
     var username = req.body.username;
     var password = req.body.password;
     var password2 = req.body.password2;
 
-    req.checkBody('name', 'Name is required!').notEmpty();
     req.checkBody('email', 'Email is required!').isEmail();
     req.checkBody('username', 'Username is required!').notEmpty();
     req.checkBody('password', 'Password is required!').notEmpty();
@@ -48,7 +46,6 @@ router.post('/register', function (req, res) {
                 res.redirect('/users/register');
             } else {
                 var user = new User({
-                    name: name,
                     email: email,
                     username: username,
                     password: password,
@@ -76,7 +73,6 @@ router.post('/register', function (req, res) {
             }
         });
     }
-
 });
 
 //get login
@@ -91,7 +87,7 @@ router.get('/login', function (req, res) {
 //post login
 router.post('/login', function (req, res, next) {
     passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/products',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);

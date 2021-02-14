@@ -167,18 +167,25 @@
                                 0
                                 <% } %>
                             )</a>
+
                         </li>
-                        <%  { %>
-                            <li><a href="/users/register">
-                                <i style="font-size:24px" class="fa">&#xf007;</i>
-                                Register</a></li>
-                            <li><a href="/users/logout">
-                                <i style="font-size:24px" class="fa">&#xf08b;</i>
-                                Log out</a></li>
-                            <% } %>
-                            <% if (user && user.admin == 1) { %>
-                            <li><a href="/admin/pages">Admin Area</a></li>
-                            <% }%>
+                        <% if (user) { %>
+                        <li><a href="/users/logout">
+                            <i style="font-size:24px" class="fa">&#xf08b;</i>
+                            Hi, <%= user.username %> ( logout )</a></li>
+                        <% } else {%>
+                        <li><a href="/users/register">
+                            <i style="font-size:24px" class="fa">&#xf007;</i>
+                            Register</a></li>
+                        <li><a href="/users/login">
+                            <i style="font-size:24px" class="fa">&#xf090;</i>
+                            Log in</a></li>
+                        <% } %>
+                        <% if (user && user.admin == 1) { %>
+                        <li><a href="/admin/pages">
+                            <i style="font-size:24px" class="fa">&#xf2b9;</i>
+                            Admin Area</a></li>
+                        <% }%>
                         
                     </ul>
                 </div><!--/.nav-collapse -->
