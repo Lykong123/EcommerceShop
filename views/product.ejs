@@ -242,9 +242,12 @@
                                 <p style="color: rgb(163, 163, 236);">$<%= parseFloat(p.price).toFixed(2) %></p>
                                 <!-- To show only add to cart if login  -->
                                 <br><br><br><br>
-                                <p><a href="/cart/add/<%= p.slug %>">
-                                <i style="font-size:24px" class="fa">&#xf07a;</i>
-                                Add To Cart</a></p>
+
+                                <% if (loggedIn) { %>
+                                <p><a href="/cart/add/<%= p.slug %>">Add to cart</a></p>
+                                <% } else {%>
+                                <p>You must be logged in to purchase items.</p>
+                                <% } %>
                             </div>
                         </div>
                        

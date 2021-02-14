@@ -137,43 +137,52 @@ router.post('/add-product', function (req, res) {
     }
 });
 
-//get edit product
 router.get('/edit-product/:id', function (req, res) {
+
     var errors;
     if (req.session.errors)
         errors = req.session.errors;
     req.session.errors = null;
+
     Category.find(function (err, categories) {
         Product.findById(req.params.id, function (err, p) {
             if (err) {
                 console.log(err);
                 res.redirect('products');
             } else {
-                if (err) {
-                    console.log(err);
-                } else {
-                    res.render('edit_product', {
-                        title: p.title,
-                        errors: errors,
-                        desc: p.desc,
-                        categories: categories,
-                        category: p.category.replace(/\s+/g, '-').toLowerCase(),
-                        price: parseFloat(p.price).toFixed(2),
-                        quantity: p.quantity,
-                        instockAt: p.instockAt,
-                        id: p._id
-                    });
-                }
+                
+                    if (err) {
+                        console.log(err);
+                    } else {
+
+                        res.render('edit_product', {
+                            title: p.title,
+                            errors: errors,
+                            desc: p.desc,
+                            categories: categories,
+                            quantity: p.quantity,
+                            instockAt: p.instockAt,
+                            category: p.category.replace(/\s+/g, '-').toLowerCase(),
+                            price: parseFloat(p.price).toFixed(2),
+                            id: p._id
+                        });
+                };
             }
         });
+
     });
+
 });
 
-//post edit product by id but can't edit image of the product
+/*
+ * POST edit product
+ */
 router.post('/edit-product/:id', function (req, res) {
+
     req.checkBody('title', 'Title must have a value.').notEmpty();
     req.checkBody('desc', 'Description must have a value.').notEmpty();
     req.checkBody('price', 'Price must have a value.').isDecimal();
+
     var title = req.body.title;
     var slug = title.replace(/\s+/g, '-').toLowerCase();
     var desc = req.body.desc;
@@ -182,40 +191,39 @@ router.post('/edit-product/:id', function (req, res) {
     var quantity = req.body.quantity;
     var instockAt = req.body.instockAt;
     var id = req.params.id;
+
     var errors = req.validationErrors();
 
     if (errors) {
         req.session.errors = errors;
-        res.redirect('edit-product' + id);
+        res.redirect('/admin/products/edit-product/' + id);
     } else {
         Product.findOne({slug: slug, _id: {'$ne': id}}, function (err, p) {
             if (err)
                 console.log(err);
 
             if (p) {
-                console.log(p);
                 req.flash('danger', 'Product title exists, choose another.');
-                res.redirect('edit-product' + id);
+                res.redirect('/admin/products/edit-product/' + id);
             } else {
                 Product.findById(id, function (err, p) {
                     if (err)
                         console.log(err);
 
-                    console.log(id);    
                     p.title = title;
                     p.slug = slug;
                     p.desc = desc;
                     p.price = parseFloat(price).toFixed(2);
                     p.category = category;
-                    p.instockAt = instockAt;
                     p.quantity = quantity;
-                   
+                    p.instockAt = instockAt;
+
                     p.save(function (err) {
                         if (err)
-                            console.log(err); 
-                
+                            console.log(err);
+
                         req.flash('success', 'Product edited!');
-                        res.redirect('/admin/products');
+                        res.redirect('/admin/products/edit-product/'+id);
                     });
 
                 });

@@ -39,7 +39,7 @@ router.post('/register', function (req, res) {
             title: 'Register'
         });
     } else {
-        User.findOne({username: username}, function (err, user) {
+        User.findOne({email: email}, function (err, user) {
             if (err)
                 console.log(err);
 

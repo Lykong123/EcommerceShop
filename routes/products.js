@@ -43,7 +43,7 @@ router.get('/:category', function (req, res) {
 //get products detail
 router.get('/:category/:product', function (req, res) {
     var galleryImages = null;
-   // var loggedIn = (req.isAuthenticated()) ? true : false;
+    var loggedIn = (req.isAuthenticated()) ? true : false;
 
     Product.findOne({slug: req.params.product}, function (err, product) {
         if (err) {
@@ -61,7 +61,7 @@ router.get('/:category/:product', function (req, res) {
                         title: product.title,
                         p: product,
                         galleryImages: galleryImages,
-                       // loggedIn: loggedIn
+                        loggedIn: loggedIn
                     });
                 }
             });

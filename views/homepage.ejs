@@ -11,6 +11,17 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
+    <style>
+         .nav-bar{
+            background-image: url("/product_images/Cloths-bc740630f228713e4bb0de8a7bffce22.png");
+            background-size: 100% 100%; 
+            background-repeat: no-repeat;
+            padding: 10%;
+        }
+        .brand-logo {
+            margin-right: auto;
+        }
+    </style>
 
     <body>
         <nav class="navbar navbar-inverse">
@@ -62,7 +73,9 @@
                             Log in</a></li>
                         <% } %>
                         <% if (user && user.admin == 1) { %>
-                        <li><a href="/admin/pages">Admin Area</a></li>
+                        <li><a href="/admin/pages">
+                            <i style="font-size:24px" class="fa">&#xf2b9;</i>
+                            Admin Area</a></li>
                         <% }%>
                         
                     </ul>
@@ -94,7 +107,21 @@
                 <div class="col-xs-12 col-md-1"></div>
                 <div class="col-xs-12 col-md-8">
 
-
+                    
+                <!-- navbar -->
+                <div class="nav-bar">
+                    <div class=" brand-logo" style="padding: 0;">
+                        <p style="font-weight: bold;">Since 2020</p>
+                        <a href="">
+                            <h1 
+                                style="color: #A32CC4;">Awesome<span class="font-style" 
+                                style="color: rgb(51, 211, 51);">Shop</span>
+                            </h1>
+                        </a>
+                    </div>
+                    <p>Ready to wear dresses tailored for you from online. Hurry up while stock lasts</p><br>
+                    <br><br><br><br><br><br>
+                </div>
 
 
             </div>
