@@ -121,7 +121,7 @@ router.post('/edit-category/:id', function (req, res) {
                         });
 
                         req.flash('success', 'Category edited!');
-                        res.redirect('/admin/categories/edit-category/' + id);
+                        res.redirect('/admin/categories');
                     });
                 });
             }
@@ -142,7 +142,7 @@ router.get('/delete-category/:id', function(req, res){
                 req.app.locals.categories = categories;    
         });
         req.flash('success', 'category deleted');
-        res.redirect('/admin/categories/');    
+        res.redirect('/admin/categories');    
     });
 });
 

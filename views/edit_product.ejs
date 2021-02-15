@@ -5,20 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Edit Product | Admin Area</title>
+    <title>Admin Area</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/adminstyle.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
-  <style>
-    .box{
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-  </style>
   <body>
-
     <nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
@@ -30,6 +23,7 @@
           </button>
           <a class="navbar-brand" target="_blank">Awesome Shop</a>
         </div>
+
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/admin/pages">Pages</a></li>
@@ -37,9 +31,7 @@
             <li><a href="/admin/products">Products</a></li>
           </ul>
            <ul class="nav navbar-nav navbar-right">
-               <li><a href="/users/logout">
-                <i style="font-size:24px" class="fa">&#xf08b;</i>
-                Logout</a></li>
+               <li><a href="/users/logout">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -59,54 +51,120 @@
     <h2 class="page-title">Edit product</h2>
     <a href="/admin/products" class="btn btn-primary" style="box-shadow: 0 0 10px rgba(0,0,0,0.5);">Back to all products</a>
     <br><br>
-      <form method="post" action="/admin/products/edit-product/<%= id %>" enctype="multipart/form-data">
+    
+    <form method="post" action="/admin/products/edit-product/<%= id %>" enctype="multipart/form-data">
+        
         <div class="form-group" style=" box-shadow: 0 0 10px rgba(0,0,0,0.15);">
             <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
         </div>
-    
-        <div class="form-group" style="box-shadow: 0 0 10px rgba(0,0,0,0.15);">
+        
+        <div class="form-group" style=" box-shadow: 0 0 10px rgba(0,0,0,0.15);">
             <textarea name="desc" class="form-control" cols="30" rows="10" placeholder="Description"><%= desc %></textarea>
         </div>
-
-        <div class="form-group" style="box-shadow: 0 0 10px rgba(0,0,0,0.15);">
-            <textarea name="desc" class="form-control" name="quantity" placeholder="Quantity"><%= quantity %></textarea>
-        </div>
-    
-        <div class="form-group" style="box-shadow: 0 0 10px rgba(0,0,0,0.15);">
+        
+        <div class="form-group" style=" box-shadow: 0 0 10px rgba(0,0,0,0.15);">
             <select name="category" class="form-control">
                 <% categories.forEach(function(cat){ %>
                     <option value="<%= cat.slug %>"
-                    <% if (cat.slug == category) { %>selected="selected"<% } %>        
+                    <% if (cat.slug == category) { %>
+                    selected="selected"
+                    <% } %>        
                     ><%= cat.title %></option>
                 <% }); %>
             </select>
         </div>
-    
-        <div class="form-group" style="box-shadow: 0 0 10px rgba(0,0,0,0.15);">
-            <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
-        </div>  
         
-        <div class="form-group" style="box-shadow: 0 0 10px rgba(0,0,0,0.15);">
-            <input type="text" class="form-control" name="instockAt" value="<%= instockAt %> " placeholder="In Stock At">
+        <div class="form-group" style=" box-shadow: 0 0 10px rgba(0,0,0,0.15);">
+            <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
         </div>
-        <button class="btn btn-primary" style="box-shadow: 0 0 10px rgba(0,0,0,0.5);">Submit</button>
 
-    </div>
+        <div class="form-group" style=" box-shadow: 0 0 10px rgba(0,0,0,0.15);">
+          <input type="text" class="form-control" name="quantity" value="<%= quantity %>" placeholder="Quantity">
+        </div>
+
+        <div class="form-group" style=" box-shadow: 0 0 10px rgba(0,0,0,0.15);">
+          <input type="text" class="form-control" name="instockAt" value="<%= instockAt %>" placeholder="In Stock At">
+        </div>
+        
+        <div class="form-group">
+            <label for="">Current Image</label>
+            <p>
+                <% if (image == "") { %>
+                <img id="noimage" src="/images/noimage.png" alt="">
+                <% } else {%>
+                <img id="noimage" src="/product_images/<%= id %>/<%= image %>" alt="">
+                <% } %>
+            </p>
+        </div>
+        
+        <div class="form-group">
+            <label for="">Upload Image</label>
+            <input type="file" class="form-control" name="image" id="img">
+            <img src="#" id="imgPreview" alt="">
+        </div>
+        
+        <input type="hidden" name="pimage" value="<%= image %>">
+        <button class="btn btn-primary" style=" box-shadow: 0 0 10px rgba(0,0,0,0.5);">Submit</button>
+    </form>
+    
     <hr>
+    
+    <ul class="gallery">
+        <% galleryImages.forEach(function(image){ %>
+        <% if (image != "thumbs") { %>
+        <li>
+            <img src="/product_images/<%= id %>/gallery/thumbs/<%= image %>" alt="">&nbsp;
+            <a class="confirmDeletion" href="/admin/products/delete-image/<%= image %>?id=<%= id %>">delete</a>
+        </li>
+        <% } %>
+        <% }); %>
+    </ul>
+    
     <br><br>
-
+   
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/basic.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/dropzone.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/dropzone.js"></script>
-    
-    
+    <script>
+        
+        // Preview image
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        $("#img").change(function() {
+            readURL(this);
+        });
+        
+        // Dropzone
+        Dropzone.options.dropzoneForm = {
+            acceptedFiles: "image/*",
+            init: function() {
+                this.on("queuecomplete", function(file) {
+                   setTimeout(function() {
+                    location.reload()
+                    }, 1000); 
+                });
+            }
+        }
+        
+    </script>
 
-    </div><!-- /.container -->
-    <br><br><br>
-    <hr>
-    <p class="text-center">&COPY; Awesome Shop</p>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
-    <script src="/js/main.js"></script>
-  </body>
-</html>
+  </div><!-- /.container -->
+  <br><br><br>
+  <hr>
+  <p class="text-center">&COPY; Awesome Shop</p>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
+      <script src="/js/main.js"></script>
+    </body>
+  </html>

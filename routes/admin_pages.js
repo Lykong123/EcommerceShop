@@ -199,7 +199,7 @@ router.post('/edit-page/:id', function (req, res) {
                             }
                         });
                         req.flash('success', 'Page edited!');
-                        res.redirect('/admin/pages/edit-page/' + id);
+                        res.redirect('/admin/pages');
                     });
                 });
             }
@@ -222,7 +222,7 @@ router.get('/delete-page/:id', function (req, res) {
         });
 
         req.flash('success', 'Page deleted!');
-        res.redirect('pages');
+        res.redirect('/admin/pages');
     });
 });
      
